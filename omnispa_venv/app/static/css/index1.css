@@ -1,0 +1,210 @@
+/* Root variables for colors, text, borders, and shadows */
+:root {
+	--lilac: #c8a2c8;
+	--lilac-light: #e6d7e6;
+	--pink: #f4acb6;
+	--pink-light: #f9d6da;
+	--pink-dark: #e895a1;
+	--white: #ffffff;
+	--off-white: #fcfaf9;
+	--text-color: #6b4688;
+	--border-color: rgba(200, 162, 200, 0.3);
+	--border-radius: 16px;
+	--shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Body styling with gradient background, font, text color, and line height */
+body {
+	font-family: "Georgia", serif;
+	background: linear-gradient(to bottom, var(--off-white), var(--white));
+	color: var(--text-color);
+	line-height: 1.7;
+}
+
+/* Main header styling with gradient, border radius, shadow, and padding */
+.main-header {
+	background: linear-gradient(to right, var(--lilac-light), var(--pink-light));
+	border-radius: var(--border-radius);
+	margin: 20px 0 30px;
+	box-shadow: var(--shadow);
+	padding: 10px 0;
+}
+
+/* Omni header title styling with font size, weight, color, shadow, padding, and letter spacing */
+.omni_head {
+	font-size: 3.5rem;
+	font-weight: 700;
+	color: var(--pink);
+	text-shadow: 2px 2px 4px rgba(219, 112, 147, 0.2);
+	padding: 20px 0;
+	margin: 0;
+	letter-spacing: 2px;
+}
+
+/* Navbar links styling with color, padding, border radius, weight, and transition */
+.nav-link {
+	color: var(--text-color) !important;
+	font-weight: 500;
+	padding: 0.5rem 1rem !important;
+	border-radius: 20px;
+	transition: all 0.3s ease;
+}
+
+/* Navbar link hover/focus effects */
+.nav-link:hover,
+.nav-link:focus {
+	background-color: rgba(255, 255, 255, 0.5);
+	color: var(--pink) !important;
+	transform: translateY(-2px);
+}
+
+/* Navbar link SVG icon hover effect */
+.nav-link svg {
+	transition: all 0.3s ease;
+}
+
+.nav-link:hover svg {
+	transform: scale(1.1);
+	color: var(--pink) !important;
+}
+
+/* Search input styling with border radius, padding, font size, and transition */
+.search-form input {
+	border-radius: 30px;
+	border: 1px solid var(--lilac);
+	padding: 12px 20px;
+	font-size: 1rem;
+	transition: all 0.3s ease;
+}
+
+/* Search input focus effect */
+.search-form input:focus {
+	border-color: var(--pink);
+	box-shadow: 0 0 0 0.25rem rgba(244, 172, 182, 0.25);
+}
+
+/* Spa buttons styling */
+.btn-spa {
+	background-color: var(--lilac-light);
+	border: 1px solid var(--text-color);
+	color: var(--text-color);
+	border-radius: 30px;
+	padding: 12px 30px;
+	font-weight: 600;
+	transition: all 0.3s ease;
+	font-size: 1.1rem;
+}
+
+/* Spa button hover effect */
+.btn-spa:hover {
+	background-color: var(--lilac-light);
+	border: 1px solid var(--text-color);
+	transform: translateY(-3px);
+	box-shadow: var(--lilac);
+	color: var(--text-color);
+}
+
+/* Outline spa button styling */
+.btn-outline-spa {
+	background-color: transparent;
+	border: 2px solid var(--text-color);
+	color: var(--text-color);
+	border-radius: 30px;
+	padding: 10px 25px;
+	font-weight: 600;
+	transition: all 0.3s ease;
+}
+
+/* Outline spa button hover effect */
+.btn-outline-spa:hover {
+	background-color: var(--lilac-light);
+	color: var(--lilac);
+}
+
+/* Hero section with background image, gradient overlay, padding, border radius, shadow, and center alignment */
+.hero-section {
+	background: linear-gradient(
+			rgba(255, 255, 255, 0.9),
+			rgba(255, 255, 255, 0.7)
+		),
+		url("https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80");
+	background-size: cover;
+	background-position: center;
+	border-radius: var(--border-radius);
+	padding: 80px 40px;
+	text-align: center;
+	margin-bottom: 50px;
+	box-shadow: var(--shadow);
+}
+
+/* Hero title styling */
+.hero-title {
+	font-size: 3rem;
+	color: var(--pink);
+	margin-bottom: 20px;
+	font-weight: 700;
+}
+
+/* Hero subtitle styling */
+.hero-subtitle {
+	font-size: 1.3rem;
+	color: var(--text-color);
+	margin-bottom: 30px;
+	max-width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Responsive adjustments for medium devices */
+@media (max-width: 992px) {
+	.omni_head {
+		font-size: 2.8rem;
+	}
+
+	.hero-title {
+		font-size: 2.5rem;
+	}
+}
+
+/* Responsive adjustments for tablets */
+@media (max-width: 768px) {
+	.omni_head {
+		font-size: 2.2rem;
+	}
+
+	.hero-section {
+		padding: 50px 20px;
+	}
+
+	.hero-title {
+		font-size: 2rem;
+	}
+
+	.hero-subtitle {
+		font-size: 1.1rem;
+	}
+}
+
+/* Responsive adjustments for small phones */
+@media (max-width: 576px) {
+	.omni_head {
+		font-size: 1.8rem;
+	}
+
+	.hero-title {
+		font-size: 1.8rem;
+	}
+
+	.btn-spa,
+	.btn-outline-spa {
+		padding: 10px 20px;
+		font-size: 1rem;
+		margin-bottom: 10px;
+		display: block;
+		width: 100%;
+	}
+
+	.search-form {
+		margin-bottom: 15px;
+	}
+}

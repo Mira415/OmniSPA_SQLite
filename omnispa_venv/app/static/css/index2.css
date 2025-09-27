@@ -1,0 +1,289 @@
+/* Carousel container styling with border radius, shadow, and spacing */
+.carousel-container {
+	border-radius: var(--border-radius);
+	overflow: hidden;
+	box-shadow: var(--shadow);
+	margin-bottom: 60px;
+}
+
+/* Each carousel item with fixed height and relative positioning */
+.carousel-item {
+	height: 500px;
+	position: relative;
+}
+
+/* Carousel image wrapper to contain images properly */
+.carousel-img-container {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+/* Carousel images with fit, position, and transition effects */
+.carousel-img-container img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	object-position: center;
+	transition: transform 0.5s ease;
+}
+
+/* Slight zoom on carousel image hover */
+.carousel-item:hover .carousel-img-container img {
+	transform: scale(1.05);
+}
+
+/* Overlay at the bottom of carousel item */
+.carousel-overlay {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+	padding: 30px 20px 20px;
+	color: white;
+}
+
+/* Carousel captions */
+.carousel-caption {
+	position: static;
+	text-align: center;
+	padding: 0;
+	color: white;
+}
+
+/* Carousel caption headings */
+.carousel-caption h5 {
+	font-size: 2rem;
+	font-weight: 600;
+	margin-bottom: 15px;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Section title styling */
+.section-title {
+	text-align: center;
+	color: var(--pink);
+	margin-bottom: 50px;
+	font-size: 2.5rem;
+	font-weight: 700;
+}
+
+/* Spa section header with decorative underline */
+.spa-section-header {
+	text-align: center;
+	margin-bottom: 3rem;
+	position: relative;
+	padding-bottom: 1.5rem;
+}
+
+.spa-section-header:after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80px;
+	height: 3px;
+	background: linear-gradient(to right, var(--lilac), var(--pink));
+	border-radius: 3px;
+}
+
+/* Spa card container styling with hover effect */
+.spa-card {
+	background: white;
+	border-radius: var(--border-radius);
+	overflow: hidden;
+	transition: all 0.3s ease;
+	height: 100%;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+	position: relative;
+	margin-bottom: 30px;
+}
+
+.spa-card:hover {
+	transform: translateY(-10px);
+	box-shadow: 0 15px 30px rgba(200, 162, 200, 0.25);
+}
+
+/* Badge for spa cards */
+.spa-card-badge {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	background: linear-gradient(to right, var(--pink), var(--lilac));
+	color: white;
+	padding: 5px 12px;
+	border-radius: 20px;
+	font-size: 0.8rem;
+	font-weight: 600;
+	z-index: 10;
+}
+
+/* Spa card image container and image styling with hover zoom effect */
+.spa-image-container {
+	height: 200px;
+	overflow: hidden;
+	position: relative;
+}
+
+.spa-image-container img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.5s ease;
+}
+
+.spa-card:hover .spa-image-container img {
+	transform: scale(1.1);
+}
+
+/* Spa card content area */
+.spa-card-content {
+	padding: 1.5rem;
+}
+
+/* Spa name and description */
+.spa-name {
+	color: var(--pink);
+	margin-bottom: 0.5rem;
+	font-size: 1.4rem;
+	font-weight: 600;
+}
+
+.spa-description {
+	color: #666;
+	margin-bottom: 1.2rem;
+	font-size: 0.95rem;
+	line-height: 1.5;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/* Spa features tags */
+.spa-features {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-bottom: 1.2rem;
+}
+
+.spa-feature {
+	background: var(--lilac-light);
+	color: var(--text-color);
+	padding: 4px 10px;
+	border-radius: 15px;
+	font-size: 0.8rem;
+	font-weight: 500;
+}
+
+/* Spa card action buttons */
+.spa-card-actions {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+/* View details button styling */
+.view-details-btn {
+	background: linear-gradient(to right, var(--pink), var(--lilac));
+	color: white;
+	border: none;
+	padding: 8px 20px;
+	border-radius: 30px;
+	font-weight: 500;
+	transition: all 0.3s ease;
+}
+
+.view-details-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 5px 15px rgba(244, 172, 182, 0.4);
+	color: white;
+}
+
+/* Like heart button styling */
+.like-heart {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid var(--pink);
+	color: var(--pink);
+	background: transparent;
+	transition: all 0.3s ease;
+}
+
+.like-heart:hover,
+.like-heart.active {
+	background: var(--pink);
+	color: white;
+}
+
+/* Footer styling */
+footer {
+	border-top: 1px solid var(--lilac-light);
+	padding: 40px 0 20px;
+	margin-top: 50px;
+}
+
+.footer-link {
+	color: var(--text-color);
+	text-decoration: none;
+	transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+	color: var(--pink);
+	text-decoration: underline;
+}
+
+.social-icons {
+	font-size: 1.5rem;
+	margin: 15px 0;
+}
+
+.social-icons a {
+	color: var(--text-color);
+	margin: 0 10px;
+	transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+	color: var(--pink);
+	transform: translateY(-3px);
+}
+
+/* Responsive adjustments for tablets and smaller devices */
+@media (max-width: 992px) {
+	.carousel-item {
+		height: 400px;
+	}
+}
+
+@media (max-width: 768px) {
+	.spa-card-content {
+		padding: 1rem;
+	}
+
+	.spa-features {
+		margin-bottom: 1rem;
+	}
+
+	.carousel-item {
+		height: 350px;
+	}
+
+	.section-title {
+		font-size: 2rem;
+	}
+}
+
+@media (max-width: 576px) {
+	.carousel-item {
+		height: 300px;
+	}
+}

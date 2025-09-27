@@ -1,0 +1,143 @@
+/* Root variables for colors and fonts */
+:root {
+	--gold-primary: #d4af37;
+	--gold-secondary: #f5d76e;
+	--silver: #c0c0c0;
+	--silver-light: #e8e8e8;
+	--lilac: #c8a2c8;
+	--lilac-light: #e6d7e6;
+	--pink: #f4acb6;
+	--pink-light: #f9d6da;
+	--white: #ffffff;
+	--off-white: #fcfaf9;
+	--font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+/* Styling for brand/logo titles */
+.brand-title {
+	color: var(--pink);
+	font-weight: bold;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for service price tags with gradient background */
+.service-price {
+	background: linear-gradient(
+		to right,
+		var(--gold-primary),
+		var(--gold-secondary)
+	) !important;
+	color: #333 !important;
+	font-weight: bold;
+}
+
+/* Styling for total amount displays */
+.total-display {
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: palevioletred;
+	background: linear-gradient(to right, var(--pink-light));
+	padding: 8px 15px;
+	border-radius: 8px;
+	border: 1px solid var(--silver);
+}
+
+/* General body styling including font, background gradient, and text color */
+body {
+	font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+	background: linear-gradient(to bottom, var(--off-white), var(--white));
+	min-height: 100vh;
+	color: #555;
+}
+
+/* Accordion button default styling */
+.accordion-button {
+	background: linear-gradient(to right, var(--lilac-light), var(--pink-light));
+	color: #666;
+	font-weight: 600;
+	border: 1px solid var(--silver);
+}
+
+/* Accordion button styling when expanded */
+.accordion-button:not(.collapsed) {
+	background: linear-gradient(to right, var(--lilac-light), var(--pink-light));
+	color: #6b4688;
+	box-shadow: 0 2px 6px rgba(200, 162, 200, 0.2);
+}
+
+/* Styling for list group items */
+.list-group-item {
+	color: #6b4688;
+	font-weight: 600;
+}
+
+/* Booking widget and section styling with gradient, border, shadow, and rounded corners */
+#bookingWidget,
+.booking-section {
+	background: linear-gradient(to bottom, var(--white), var(--off-white));
+	border: 1px solid var(--silver) !important;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+	border-radius: 16px;
+}
+
+/* Book Now button default styling */
+#bookNowBtn {
+	background: linear-gradient(to right, var(--lilac-light), var(--pink-light));
+	border: none;
+	border-radius: 12px;
+	padding: 12px;
+	font-weight: 600;
+	transition: all 0.3s ease;
+	color: #333;
+}
+
+/* Book Now button hover effect */
+#bookNowBtn:hover:not(:disabled) {
+	transform: translateY(-3px);
+	box-shadow: var(--pink);
+	background: linear-gradient(to right, var(--lilac), var(--pink));
+}
+
+/* Book Now button disabled state */
+#bookNowBtn:disabled {
+	background: var(--silver);
+	color: #888;
+}
+
+/* Unstyled list links default styling */
+.list-unstyled a {
+	transition: all 0.3s ease;
+	border-radius: 8px;
+	padding: 8px 12px;
+	display: block;
+	color: #666 !important;
+}
+
+/* Unstyled list links hover effect */
+.list-unstyled a:hover {
+	transform: translateX(5px);
+	text-decoration: none;
+	color: #6b4688 !important;
+}
+
+/* Navbar toggle button border color */
+.navbar-toggler {
+	border-color: palevioletred;
+}
+
+/* Navbar toggle icon styling */
+.navbar-toggler-icon {
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28112, 112, 112, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Divider styling with gradient and spacing */
+.divider {
+	height: 2px;
+	background: linear-gradient(
+		to right,
+		transparent,
+		var(--silver),
+		transparent
+	);
+	margin: 15px 0;
+}

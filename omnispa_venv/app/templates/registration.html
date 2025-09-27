@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="" />
+		<meta
+			name="author"
+			content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+		/>
+		<meta name="generator" content="Astro v5.9.2" />
+		<title>Registration</title>
+		<link
+			rel="canonical"
+			href="https://getbootstrap.com/docs/5.3/examples/sign-in/"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="icon"
+			href="{{ url_for('static', filename='img/favicon.png')}}"
+			type="image/png"
+		/>
+		<meta name="theme-color" content="#712cf9" />
+		<link
+			href="{{ url_for('static', filename='css/registration.css')}}"
+			rel="stylesheet"
+		/>
+	</head>
+
+	<body
+		class="d-flex align-items-center justify-content-center min-vh-100 py-4"
+	>
+		<main
+			class="form-signin w-100 m-auto registration-container"
+			style="max-width: 800px"
+		>
+			<form id="spaRegistrationForm" class="p-4 p-md-5">
+				<nav class="navbar navbar-custom">
+					<div class="container-fluid d-flex justify-content-end">
+						<a
+							href="{{ url_for('main.index') }}"
+							class="btn btn-outline"
+							style="
+								border-color: var(--primary-color);
+								color: var(--primary-color);
+							"
+						>
+							<i class="bi bi-arrow-left me-2"></i>Back to Home
+						</a>
+					</div>
+				</nav>
+
+				<div id="alertsContainer" class="mb-3"></div>
+
+				<h1 class="registration-header text-center">Register Your Spa</h1>
+
+				<!-- Basic Information Section -->
+				<div class="form-section">
+					<h2 class="section-header">Basic Information</h2>
+
+					<div class="form-floating mb-3">
+						<input
+							type="text"
+							class="form-control"
+							id="spaName"
+							placeholder="Spa Name"
+							required
+						/>
+						<label for="spaName">Spa Name</label>
+					</div>
+
+					<div class="mb-3">
+						<label for="spaDescription" class="form-label">Description</label>
+						<textarea
+							class="form-control"
+							id="spaDescription"
+							rows="3"
+							required
+						></textarea>
+					</div>
+
+					<div class="form-floating mb-3">
+						<input
+							type="text"
+							class="form-control"
+							id="spaAddress"
+							placeholder="Address"
+							required
+						/>
+						<label for="spaAddress">Address</label>
+					</div>
+
+					<div class="form-floating mb-3">
+						<input
+							type="tel"
+							class="form-control"
+							id="spaPhone"
+							placeholder="Phone Number"
+							required
+						/>
+						<label for="spaPhone">Phone Number</label>
+					</div>
+
+					<div class="form-floating mb-3">
+						<input
+							type="email"
+							class="form-control"
+							id="spaEmail"
+							placeholder="Email"
+							required
+						/>
+						<label for="spaEmail">Email</label>
+					</div>
+				</div>
+
+				<!-- Location Section -->
+				<div class="form-section">
+					<h2 class="section-header">Location</h2>
+					<div class="form-floating">
+						<select class="form-select" id="spaArea" required>
+							<option value="">Select Area</option>
+							<option value="north">Victoria</option>
+						</select>
+						<label for="spaArea"></label>
+					</div>
+				</div>
+
+				<!-- Operating Hours Section -->
+				<div class="form-section">
+					<h2 class="section-header">Operating Hours</h2>
+
+					<div class="row">
+						<!-- Weekdays Hours -->
+						<div class="col-md-6 mb-3">
+							<h5 class="mb-3">Weekdays</h5>
+							<div class="row g-2">
+								<div class="col-6">
+									<label class="form-label">Opening Time</label>
+									<select class="form-select" name="weekdayOpening">
+										<option selected value="08:00">8:00 AM</option>
+										<option value="09:00">9:00 AM</option>
+										<option value="10:00">10:00 AM</option>
+									</select>
+								</div>
+								<div class="col-6">
+									<label class="form-label">Closing Time</label>
+									<select class="form-select" name="weekdayClosing">
+										<option selected value="18:00">6:00 PM</option>
+										<option value="19:00">7:00 PM</option>
+										<option value="20:00">8:00 PM</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<!-- Weekend Hours -->
+						<div class="col-md-6 mb-3">
+							<h5 class="mb-3">Weekend</h5>
+							<div class="row g-2">
+								<div class="col-6">
+									<label class="form-label">Opening Time</label>
+									<select class="form-select" name="weekendOpening">
+										<option selected value="09:00">9:00 AM</option>
+										<option value="10:00">10:00 AM</option>
+										<option value="11:00">11:00 AM</option>
+									</select>
+								</div>
+								<div class="col-6">
+									<label class="form-label">Closing Time</label>
+									<select class="form-select" name="weekendClosing">
+										<option selected value="17:00">5:00 PM</option>
+										<option value="18:00">6:00 PM</option>
+										<option value="19:00">7:00 PM</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Services Section -->
+				<div class="form-section" id="servicesSection">
+					<h2 class="section-header">Services Setup</h2>
+					<p class="text-muted mb-3">
+						Add your spa services with their details
+					</p>
+
+					<!-- Service Category Selection -->
+					<div class="mb-3">
+						<label class="form-label">Select Service Category</label>
+						<select class="form-select" id="serviceCategorySelector">
+							<option value="massage">Massage</option>
+							<option value="facial">Facial</option>
+							<option value="beauty">Beauty Treatment</option>
+							<option value="hair">Hair Treatment</option>
+						</select>
+					</div>
+
+					<!-- Service Details -->
+					<div id="serviceDetailsContainer">
+						<div class="mb-3">
+							<label class="form-label">Add Service Details</label>
+							<div class="row g-2">
+								<div class="col-md-4">
+									<div class="form-floating">
+										<input
+											type="text"
+											class="form-control"
+											id="serviceName"
+											placeholder="Service Name"
+										/>
+										<label for="serviceName">Service Name</label>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-floating">
+										<input
+											type="number"
+											class="form-control"
+											id="serviceDuration"
+											placeholder="Duration"
+										/>
+										<label for="serviceDuration">Duration (min)</label>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-floating">
+										<input
+											type="number"
+											step="0.01"
+											class="form-control"
+											id="servicePrice"
+											placeholder="Price"
+										/>
+										<label for="servicePrice">Price (SCR)</label>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<button
+										type="button"
+										class="btn btn-primary w-100 h-100"
+										onclick="addService()"
+									>
+										Add
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="mb-3">
+							<div class="form-floating">
+								<textarea
+									class="form-control"
+									id="serviceDescription"
+									style="height: 100px"
+								></textarea>
+								<label for="serviceDescription">Service Description</label>
+							</div>
+						</div>
+
+						<!-- Quick Add Buttons -->
+						<div class="d-flex flex-wrap gap-2 mb-3">
+							<button
+								type="button"
+								class="btn quick-add-btn"
+								onclick="quickAddService('massage', 'Swedish Massage', 60, 75)"
+							>
+								Swedish Massage
+							</button>
+							<button
+								type="button"
+								class="btn quick-add-btn"
+								onclick="quickAddService('facial', 'Basic Facial', 45, 60)"
+							>
+								Basic Facial
+							</button>
+							<button
+								type="button"
+								class="btn quick-add-btn"
+								onclick="quickAddService('beauty', 'Manicure', 30, 35)"
+							>
+								Manicure
+							</button>
+						</div>
+
+						<!-- Current Services -->
+						<div class="mb-3">
+							<label class="form-label">Current Services</label>
+							<div id="currentServices" class="d-flex flex-wrap gap-2">
+								<!-- Added services will appear here -->
+								<div class="alert alert-light mb-0">No services added yet</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Image Upload Section -->
+				<div class="form-section">
+					<h2 class="section-header">Spa Images</h2>
+					<div
+						id="imageDropZone"
+						class="border-dashed rounded p-4 text-center mb-3"
+						style="cursor: pointer"
+					>
+						<p class="mb-1">Click to upload images or drag and drop</p>
+						<p class="small text-muted">
+							Upload at least 3 high-quality images of your spa (max 20)
+						</p>
+						<input
+							type="file"
+							id="spaImages"
+							multiple
+							accept="image/*"
+							style="display: none"
+						/>
+					</div>
+					<div class="d-flex flex-wrap gap-2" id="imagePreviewContainer">
+						<!-- Image previews will appear here -->
+					</div>
+					<div id="imageCounter" class="small text-muted mt-2">0/20 images</div>
+				</div>
+
+				<!-- Availability Calendar Section -->
+				<div class="form-section">
+					<h2 class="section-header">Daily Availability Setup</h2>
+					<p class="text-muted mb-3">
+						Set your available time slots for each day
+					</p>
+
+					<!-- Day Selection -->
+					<div class="mb-3">
+						<label class="form-label">Select Day</label>
+						<select class="form-select" id="daySelector">
+							<option value="monday">Monday</option>
+							<option value="tuesday">Tuesday</option>
+							<option value="wednesday">Wednesday</option>
+							<option value="thursday">Thursday</option>
+							<option value="friday">Friday</option>
+							<option value="saturday">Saturday</option>
+							<option value="sunday">Sunday</option>
+						</select>
+					</div>
+
+					<!-- Closed Toggle -->
+					<div class="form-check form-switch mb-3">
+						<input
+							class="form-check-input"
+							type="checkbox"
+							id="dayClosedToggle"
+						/>
+						<label class="form-check-label" for="dayClosedToggle"
+							>Closed this day</label
+						>
+					</div>
+
+					<!-- Time Slots Container (shown when day is open) -->
+					<div id="timeSlotsContainer">
+						<div class="mb-3">
+							<label class="form-label">Add Time Slot</label>
+							<div class="row g-2">
+								<div class="col-md-5">
+									<select class="form-select" id="startTime">
+										<!-- Start time options will appear here-->
+									</select>
+								</div>
+								<div class="col-md-5">
+									<select class="form-select" id="endTime">
+										<!-- End time options will appear here -->
+									</select>
+								</div>
+								<div class="col-md-2">
+									<button
+										class="btn btn-primary w-100 h-100"
+										onclick="addTimeSlot()"
+									>
+										Add
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<!-- Quick Add Buttons -->
+						<div class="d-flex flex-wrap gap-2 mb-3">
+							<button
+								type="button"
+								class="btn quick-add-btn"
+								onclick="quickAddSlot('09:00', '12:00')"
+							>
+								Morning (9AM-12PM)
+							</button>
+							<button
+								type="button"
+								class="btn quick-add-btn"
+								onclick="quickAddSlot('13:00', '17:00')"
+							>
+								Afternoon (1PM-5PM)
+							</button>
+							<button
+								type="button"
+								class="btn quick-add-btn"
+								onclick="quickAddSlot('18:00', '21:00')"
+							>
+								Evening (6PM-9PM)
+							</button>
+						</div>
+
+						<!-- Current Slots -->
+						<div class="mb-3">
+							<label class="form-label">Current Time Slots</label>
+							<div id="currentSlots" class="d-flex flex-wrap gap-2">
+								<!-- Added slots will appear here -->
+								<div class="alert alert-light mb-0">
+									No time slots added yet
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Terms and Submit -->
+				<div class="form-check mb-4">
+					<input
+						class="form-check-input"
+						type="checkbox"
+						id="termsCheck"
+						required
+					/>
+					<label class="form-check-label" for="termsCheck">
+						I agree to the <a href="#">Terms of Service</a> and confirm that all
+						information provided is accurate.
+					</label>
+				</div>
+
+				<div class="d-flex justify-content-between gap-3">
+					<button
+						type="button"
+						class="btn btn-outline-secondary flex-grow-1"
+						onclick="closeRegistrationModal()"
+					>
+						Cancel
+					</button>
+					<button type="submit" class="btn btn-primary flex-grow-1">
+						Submit Registration
+					</button>
+				</div>
+				<br />
+			</form>
+		</main>
+
+		<script src="{{ url_for('static', filename='js/spa_registration/registration_data.js')}}"></script>
+		<script src="{{ url_for('static', filename='js/spa_registration/registration_utils.js')}}"></script>
+		<script src="{{ url_for('static', filename='js/spa_registration/registration_services.js')}}"></script>
+		<script src="{{ url_for('static', filename='js/spa_registration/registration_availability.js')}}"></script>
+		<script src="{{ url_for('static', filename='js/spa_registration/registration_images.js')}}"></script>
+		<script src="{{ url_for('static', filename='js/spa_registration/registration_form.js')}}"></script>
+		<script src="{{ url_for('static', filename='js/spa_registration/registration_main.js')}}"></script>
+
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+			crossorigin="anonymous"
+		></script>
+	</body>
+</html>

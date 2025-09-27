@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>About OmniSPA - Your Gateway to Relaxation</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+		/>
+		<style>
+			:root {
+				--primary-color: #db7093;
+				--primary-light: #ffc0cb;
+				--lilac: #c8a2c8;
+				--lilac-light: #e6d7e6;
+			}
+
+			body {
+				font-family: "Georgia", serif;
+				background: linear-gradient(to bottom, #fff0f5, #fffafa);
+				color: #4a4a4a;
+				line-height: 1.7;
+			}
+
+			.hero-section {
+				background: linear-gradient(
+						rgba(255, 255, 255, 0.9),
+						rgba(255, 255, 255, 0.7)
+					),
+					url("https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80");
+				background-size: cover;
+				background-position: center;
+				padding: 100px 0;
+				text-align: center;
+			}
+
+			.section-title {
+				color: var(--primary-color);
+				font-weight: 700;
+				margin-bottom: 30px;
+				position: relative;
+				display: inline-block;
+			}
+
+			.section-title:after {
+				content: "";
+				position: absolute;
+				bottom: -10px;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 60px;
+				height: 3px;
+				background: linear-gradient(
+					to right,
+					var(--lilac),
+					var(--primary-color)
+				);
+			}
+
+			.feature-icon {
+				font-size: 2.5rem;
+				color: var(--primary-color);
+				margin-bottom: 1rem;
+			}
+
+			.value-card {
+				background: white;
+				border-radius: 16px;
+				padding: 2rem;
+				height: 100%;
+				box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+				transition: transform 0.3s ease;
+			}
+
+			.value-card:hover {
+				transform: translateY(-5px);
+			}
+
+			.btn-spa {
+				background-color: var(--primary-color);
+				border-color: var(--primary-color);
+				color: white;
+				border-radius: 30px;
+				padding: 12px 30px;
+				font-weight: 600;
+				transition: all 0.3s ease;
+			}
+
+			.btn-spa:hover {
+				background-color: #c71585;
+				border-color: #c71585;
+				transform: translateY(-3px);
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Navigation (would be consistent with other pages) -->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="index.html">
+					<span style="color: #db7093; font-weight: 700; font-size: 1.8rem"
+						>OMNISPA</span
+					>
+				</a>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarNav"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="index.html">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" href="about.html">About</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Contact</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<!-- Hero Section -->
+		<section class="hero-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 mx-auto">
+						<h1 class="display-4 fw-bold mb-4" style="color: #db7093">
+							Discover Your Oasis of Relaxation
+						</h1>
+						<p class="lead">
+							OmniSPA connects you with the finest spa experiences in
+							Seychelles, making wellness accessible with just a few clicks.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Mission Section -->
+		<section class="py-5">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-10 mx-auto text-center mb-5">
+						<h2 class="section-title">Our Mission</h2>
+						<p class="fs-5">
+							At OmniSPA, we believe everyone deserves moments of peace and
+							rejuvenation. Our platform bridges the gap between spa seekers and
+							providers, creating a seamless experience that celebrates wellness
+							and self-care.
+						</p>
+					</div>
+				</div>
+
+				<div class="row g-4">
+					<div class="col-md-4">
+						<div class="value-card text-center">
+							<i class="bi bi-search-heart feature-icon"></i>
+							<h3>Easy Discovery</h3>
+							<p>
+								Find the perfect spa experience tailored to your preferences
+								with our intelligent search and personalized quiz.
+							</p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="value-card text-center">
+							<i class="bi bi-calendar-check feature-icon"></i>
+							<h3>Seamless Booking</h3>
+							<p>
+								Book appointments in real-time with our dynamic availability
+								system that prevents double-booking.
+							</p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="value-card text-center">
+							<i class="bi bi-shield-check feature-icon"></i>
+							<h3>Trusted Community</h3>
+							<p>
+								Read genuine reviews with photos and verified spa listings to
+								make confident decisions.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- For Spas Section -->
+		<section class="py-5 bg-light">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-6">
+						<h2 class="section-title">For Spa Businesses</h2>
+						<p>
+							OmniSPA empowers spa owners with tools to manage their business
+							efficiently:
+						</p>
+						<ul class="list-unstyled">
+							<li class="mb-2">
+								<i class="bi bi-check-circle-fill text-success me-2"></i> Easy
+								profile management with photo galleries
+							</li>
+							<li class="mb-2">
+								<i class="bi bi-check-circle-fill text-success me-2"></i> Custom
+								availability scheduling
+							</li>
+							<li class="mb-2">
+								<i class="bi bi-check-circle-fill text-success me-2"></i>
+								Real-time booking system
+							</li>
+							<li class="mb-2">
+								<i class="bi bi-check-circle-fill text-success me-2"></i>
+								Customer review management
+							</li>
+						</ul>
+						<a href="registration.html" class="btn btn-spa mt-3"
+							>Register Your Spa</a
+						>
+					</div>
+					<div class="col-lg-6">
+						<img
+							src="https://images.unsplash.com/photo-1600334089648-b0d9d302fbec?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+							class="img-fluid rounded shadow"
+							alt="Spa management"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Call to Action -->
+		<section
+			class="py-5 text-center"
+			style="background: linear-gradient(to right, #ffc0cb, #db7093)"
+		>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 mx-auto">
+						<h2 class="text-white mb-4">
+							Ready to Find Your Perfect Spa Experience?
+						</h2>
+						<a href="index.html" class="btn btn-light btn-lg"
+							>Explore Spas Now</a
+						>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer class="py-4 bg-light">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<p class="mb-0">&copy; 2025 OmniSPA. All rights reserved.</p>
+					</div>
+					<div class="col-md-6 text-md-end">
+						<a href="#" class="text-dark me-3"
+							><i class="bi bi-facebook"></i
+						></a>
+						<a href="#" class="text-dark me-3"
+							><i class="bi bi-instagram"></i
+						></a>
+						<a href="#" class="text-dark"><i class="bi bi-twitter"></i></a>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	</body>
+</html>

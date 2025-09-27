@@ -1,0 +1,151 @@
+/* Root variables for colors and primary theme */
+:root {
+	--lilac: #c8a2c8;
+	--lilac-light: #e6d7e6;
+	--pink: #f4acb6;
+	--pink-light: #f9d6da;
+	--white: #ffffff;
+	--off-white: #fcfaf9;
+	--primary-color: #db7093;
+}
+
+/* Body styling with gradient background, serif font, and minimum height */
+body {
+	background-color: var(--off-white);
+	font-family: "Georgia", "Times New Roman", Times, serif;
+	background: linear-gradient(to bottom, var(--off-white), var(--white));
+	min-height: 100vh;
+}
+
+/* Registration container styling with gradient background, rounded corners, border, and shadow */
+.registration-container {
+	background: linear-gradient(to bottom, var(--white), var(--off-white));
+	border-radius: 16px;
+	border: 1px solid var(--lilac);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Registration section header styling */
+.registration-header {
+	font-family: "Georgia", "Times New Roman", Times, serif;
+	color: palevioletred;
+	font-weight: 600;
+	padding-bottom: 10px;
+	border-bottom: 1px solid palevioletred;
+	margin-bottom: 25px;
+}
+
+/* Generic section header styling for forms and subsections */
+.section-header {
+	color: palevioletred;
+	font-weight: 600;
+	margin-bottom: 1rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 1px solid var(--lilac-light);
+}
+
+/* Form section styling with gradient background, rounded corners, padding, and border */
+.form-section {
+	background: linear-gradient(to right, var(--lilac-light), var(--pink-light));
+	border-radius: 12px;
+	border: 1px solid var(--lilac);
+	padding: 1.5rem;
+	margin-bottom: 1.5rem;
+}
+
+/* Form controls, selects, and checkboxes border styling */
+.form-control,
+.form-select,
+.form-check-input {
+	border: 1px solid var(--lilac);
+}
+
+/* Form controls focus state styling */
+.form-control:focus,
+.form-select:focus {
+	border-color: palevioletred;
+	box-shadow: 0 0 0 0.2rem rgba(216, 112, 147, 0.25);
+}
+
+/* Primary button styling with gradient background, border, text color, radius, and transition */
+.btn-primary {
+	background: linear-gradient(to right, var(--lilac), var(--pink));
+	border: 1px solid palevioletred;
+	color: white;
+	font-weight: 600;
+	border-radius: 12px;
+	transition: all 0.3s ease;
+}
+
+/* Primary button hover effect */
+.btn-primary:hover {
+	background: linear-gradient(to right, var(--lilac-light), var(--pink-light));
+	border-color: palevioletred;
+	color: palevioletred;
+	transform: translateY(-2px);
+}
+
+/* Outline secondary button styling with border, color, radius, and transition */
+.btn-outline-secondary {
+	border: 1px solid var(--lilac);
+	color: var(--lilac);
+	border-radius: 12px;
+	font-weight: 600;
+	transition: all 0.3s ease;
+}
+
+/* Outline secondary button hover effect */
+.btn-outline-secondary:hover {
+	background: var(--lilac-light);
+	border-color: palevioletred;
+	color: palevioletred;
+	transform: translateY(-2px);
+}
+
+/* Image drop zone styling for drag-and-drop uploads */
+#imageDropZone {
+	background: var(--off-white);
+	border: 2px dashed var(--lilac);
+	border-radius: 12px;
+	transition: all 0.3s ease;
+}
+
+/* Image drop zone hover effect */
+#imageDropZone:hover {
+	background: var(--lilac-light);
+	border-color: palevioletred;
+}
+
+/* Image preview styling with fixed size, border, object-fit, and rounded corners */
+.image-preview {
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+	border-radius: 8px;
+	border: 2px solid var(--lilac);
+}
+
+/* Service tag and time slot tag styling with gradient background, border, radius, padding, and font size */
+.service-tag,
+.time-slot-tag {
+	background: linear-gradient(to right, var(--lilac-light), var(--pink-light));
+	border: 1px solid var(--lilac);
+	border-radius: 20px;
+	padding: 0.5rem 1rem;
+	font-size: 0.9rem;
+}
+
+/* Quick add button styling */
+.quick-add-btn {
+	background: var(--off-white);
+	border: 1px solid var(--lilac);
+	border-radius: 8px;
+	color: palevioletred;
+	transition: all 0.3s ease;
+}
+
+/* Quick add button hover effect */
+.quick-add-btn:hover {
+	background: var(--lilac-light);
+	transform: translateY(-2px);
+}

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
+    <title>Edit Profile - {{ spa.name }}</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.png')}}" type="image/png" />
+    <link href="{{ url_for('static', filename='css/edit.css') }}" rel="stylesheet" />
+</head>
+
+<body class="p-3">
+    <main class="container">
+        <!-- Profile Edit Section -->
+        <section class="profile-section">
+            <div class="navbar-container">
+                <nav class="navbar navbar-custom">
+                    <div class="container-fluid d-flex align-items-center">
+                        <div class="d-flex align-items-center">
+                            <h4 class="brand-title mb-0">
+                                <i class="bi bi-pencil-square me-2"></i>Edit {{ spa.name }} Profile
+                            </h4>
+                        </div>
+                        <div>
+                            <a href="{{ url_for('profile.spa_profile', spa_id=spa.id) }}" class="btn btn-outline" style="border-color: var(--primary-color); color: var(--primary-color);">
+                                <i class="bi bi-arrow-left me-2"></i>Back to Profile
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            
+            <form id="profileEditForm" method="POST" enctype="multipart/form-data">
+                <!-- Profile Picture Upload Area-->
+                <div class="mb-4">
+                    <h4 class="spa-header mb-3">Profile Picture</h4>
+                    <div class="d-flex align-items-center">
+                        {% set profile_image = spa.images|selectattr("is_primary")|first %}
+                        <img
+                            src="{{ url_for('static', filename='uploads/' + profile_image.filename) if profile_image else url_for('static', filename='img/default_spa.jpg') }}"
+                            class="rounded-circle me-4 profile-img"
+                            id="profileImagePreview"
+                            alt="SPA Profile"
+                            style="width: 140px; height: 140px; object-fit: cover"
+                            onerror="this.onerror=null;this.src='/static/img/default_spa.jpg'"
+                            data-is-removed="false"
+                        />
+                        <div>
+                            <!-- Hidden input to track primary image status -->
+                            <input type="hidden" name="is_primary_image" value="true">
+                            <input type="hidden" name="remove_profile_image" id="removeProfileImageFlag" value="false">
+                            <input type="file" id="profileImageUpload" name="profileImageUpload" accept="image/*" style="display: none">
+                            <button
+                                type="button"
+                                class="btn spa-btn text-white mb-2"
+                                id="changePhotoBtn"
+                            >
+                                <i class="bi bi-upload me-2"></i>Change Photo
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-outline-secondary"
+                                id="removePhotoBtn"
+                            >
+                                <i class="bi bi-trash me-2"></i>Remove
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Basic Information -->
+                <div class="mb-4">
+                    <h4 class="spa-header mb-3">Basic Information</h4>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="spaName" class="form-label">SPA Name</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="spaName"
+                                name="spaName"
+                                value="{{ spa.name }}"
+                                required
+                            />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="spaEmail" class="form-label">Email</label>
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="spaEmail"
+                                name="spaEmail"
+                                value="{{ spa.email }}"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="spaPhone" class="form-label">Phone Number</label>
+                            <input
+                                type="tel"
+                                class="form-control"
+                                id="spaPhone"
+                                name="spaPhone"
+                                value="{{ spa.phone }}"
+                                required
+                            />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="spaAddress" class="form-label">Address</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="spaAddress"
+                                name="spaAddress"
+                                value="{{ spa.address }}"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="spaAbout" class="form-label">About</label>
+                        <textarea class="form-control" id="spaAbout" name="spaAbout" rows="3" required>{{ spa.description }}</textarea>
+                    </div>
+                </div>
+
+                <!-- Operating Hours -->
+                <div class="mb-4">
+                    <h4 class="spa-header mb-3">
+                        <i class="bi bi-clock-fill me-2"></i>Operating Hours
+                    </h4>
+                    <div class="row">
+                        <!-- Weekday Hours -->
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-pink">
+                                <div class="card-body">
+                                    <h5 class="card-title">Weekdays</h5>
+                                    <div class="row g-2">
+                                        <div class="col-6">
+                                            <label class="form-label">Opening Time</label>
+                                            <select class="form-select" id="weekdayOpen" name="weekdayOpening">
+                                                {% set weekday_hours = spa.operating_hours|selectattr('day_type', 'equalto', 'weekday')|first %}
+                                                {% for hour in ['7:00 AM', '8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM'] %}
+                                                <option value="{{ hour }}" 
+                                                    {% if weekday_hours and weekday_hours.opening_time == hour %}selected{% endif %}>
+                                                    {{ hour }}
+                                                </option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label">Closing Time</label>
+                                            <select class="form-select" id="weekdayClose" name="weekdayClosing">
+                                                {% for hour in ['5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM', '9:00 PM'] %}
+                                                <option value="{{ hour }}" 
+                                                    {% if weekday_hours and weekday_hours.closing_time == hour %}selected{% endif %}>
+                                                    {{ hour }}
+                                                </option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Weekend Hours -->
+                        <div class="col-md-6 mb-3">
+                            <div class="card border-pink">
+                                <div class="card-body">
+                                    <h5 class="card-title">Weekends</h5>
+                                    <div class="row g-2">
+                                        <div class="col-6">
+                                            <label class="form-label">Opening Time</label>
+                                            <select class="form-select" id="weekendOpen" name="weekendOpening">
+                                                {% set weekend_hours = spa.operating_hours|selectattr('day_type', 'equalto', 'weekend')|first %}
+                                                {% for hour in ['8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM'] %}
+                                                <option value="{{ hour }}" 
+                                                    {% if weekend_hours and weekend_hours.opening_time == hour %}selected{% endif %}>
+                                                    {{ hour }}
+                                                </option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label">Closing Time</label>
+                                            <select class="form-select" id="weekendClose" name="weekendClosing">
+                                                {% for hour in ['5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM', '9:00 PM'] %}
+                                                <option value="{{ hour }}" 
+                                                    {% if weekend_hours and weekend_hours.closing_time == hour %}selected{% endif %}>
+                                                    {{ hour }}
+                                                </option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Time Slots Availability -->
+                <div class="mb-4">
+                    <h4 class="spa-header mb-3">
+                        <i class="bi bi-calendar-event me-2"></i>Weekly Availability Time Slots
+                    </h4>
+                    <p class="text-muted mb-3">
+                        Set your available time slots for each day of the week. These will be shown to customers when booking.
+                    </p>
+
+                    <div class="accordion" id="timeSlotsAccordion">
+                        {% for day in ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] %}
+                        {% set day_availability = spa.availability|selectattr('day', 'equalto', day)|first %}
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button {% if not loop.first %}collapsed{% endif %}" type="button" 
+                                    data-bs-toggle="collapse" data-bs-target="#collapse{{ day }}">
+                                    {{ day|title }}
+                                    {% if day_availability and day_availability.is_closed %}
+                                    <span class="badge bg-danger ms-2 day-badge" id="{{ day }}Badge">Closed</span>
+                                    {% elif day_availability and day_availability.time_slots %}
+                                    <span class="badge bg-success ms-2 day-badge" id="{{ day }}Badge">{{ day_availability.time_slots|length }} slot(s)</span>
+                                    {% else %}
+                                    <span class="badge bg-secondary ms-2 day-badge" id="{{ day }}Badge">Not set</span>
+                                    {% endif %}
+                                </button>
+                            </h2>
+                            <div id="collapse{{ day }}" class="accordion-collapse collapse {% if loop.first %}show{% endif %}" 
+                                 data-bs-parent="#timeSlotsAccordion">
+                                <div class="accordion-body">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input day-closed-checkbox" type="checkbox" 
+                                               id="{{ day }}Closed" name="{{ day }}_closed" 
+                                               value="true" {% if day_availability and day_availability.is_closed %}checked{% endif %}>
+                                        <label class="form-check-label" for="{{ day }}Closed">
+                                            Closed on {{ day|title }}
+                                        </label>
+                                    </div>
+
+                                    <div class="time-slots-container {% if day_availability and day_availability.is_closed %}d-none{% endif %}" 
+                                         id="{{ day }}SlotsContainer">
+                                        <h6 class="mb-3">Time Slots</h6>
+                                        <div class="time-slots-list mb-3" id="{{ day }}SlotsList">
+                                            {% if day_availability and day_availability.time_slots %}
+                                            {% for slot in day_availability.time_slots %}
+                                            <div class="time-slot-entry mb-2">
+                                                <div class="row g-2">
+                                                    <div class="col-5">
+                                                        <label class="form-label small">Start Time</label>
+                                                        <input type="time" class="form-control form-control-sm slot-start" 
+                                                               value="{{ slot.start }}" required>
+                                                    </div>
+                                                    <div class="col-5">
+                                                        <label class="form-label small">End Time</label>
+                                                        <input type="time" class="form-control form-control-sm slot-end" 
+                                                               value="{{ slot.end }}" required>
+                                                    </div>
+                                                    <div class="col-2 d-flex align-items-end">
+                                                        <button type="button" class="btn btn-danger btn-sm remove-slot">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                        <button type="button" class="btn btn-outline-primary btn-sm add-slot-btn" data-day="{{ day }}">
+                                            <i class="bi bi-plus"></i> Add Time Slot
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <!-- Gallery Images -->
+                <div class="mb-4">
+                    <h4 class="spa-header mb-3">
+                        <i class="bi bi-images me-2"></i>Gallery
+                    </h4>
+                    <p class="text-muted mb-3">
+                        Add or remove images from your gallery (max 20)
+                    </p>
+
+                    <!-- Upload area -->
+                    <div
+                        class="border border-2 border-dashed rounded p-4 text-center mb-3"
+                        id="galleryUploadArea"
+                        style="cursor: pointer"
+                    >
+                        <p class="mb-1">Click to upload images or drag and drop</p>
+                        <p class="small text-muted">JPEG, PNG or GIF (Max 5MB each)</p>
+                        <input
+                            type="file"
+                            id="galleryUpload"
+                            name="galleryUpload"
+                            multiple
+                            accept="image/*"
+                            style="display: none"
+                        />
+                    </div>
+
+                    <!-- Gallery container with existing images -->
+                    <div class="row row-cols-2 row-cols-md-3 g-4" id="galleryContainer">
+                        {% for gallery_image in spa.images if not gallery_image.is_primary %}
+                        <div class="col" data-image-id="{{ gallery_image.id }}">
+                            <figure class="figure position-relative">
+                                <img
+                                    src="{{ url_for('static', filename='uploads/' + gallery_image.filename) if gallery_image else url_for('static', filename='img/default_spa.jpg') }}"
+                                    class="figure-img img-fluid rounded instagram-style"
+                                    style="border: 3px solid palevioletred"
+                                    alt="{{ spa.name }} gallery image"
+                                />
+                                <button
+                                    class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1 remove-gallery-image"
+                                    data-image-id="{{ gallery_image.id }}"
+                                >
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                                <figcaption class="figure-caption text-center">
+                                    <input
+                                        type="text"
+                                        class="form-control form-control-sm gallery-caption"
+                                        name="gallery_captions"
+                                        value="{{ gallery_image.caption if gallery_image.caption else '' }}"
+                                        placeholder="Add caption..."
+                                    />
+                                    <input type="hidden" name="gallery_image_ids" value="{{ gallery_image.id }}">
+                                    {% set default_caption = '#' + spa.name|replace(' ', '')|lower %}
+                                    {{ gallery_image.caption or default_caption }}
+                                </figcaption>
+                            </figure>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Submit Buttons -->
+                <div class="d-flex justify-content-between gap-3 mt-4">
+                    <button
+                        type="button"
+                        class="btn btn-outline-secondary flex-grow-1"
+                        id="cancelBtn"
+                    >
+                        <i class="bi bi-x-circle me-2"></i>Cancel
+                    </button>
+                    <button type="submit" class="btn spa-btn text-white flex-grow-1" id="submitBtn">
+                        <i class="bi bi-check-circle me-2"></i>Save Changes
+                    </button>
+                </div>
+            </form>
+        </section>
+    </main>
+    
+    <div id="availabilityData" data-availability="{{ availability_json }}"></div>
+    
+    <script src="{{ url_for('static', filename='js/editing/profileImage.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/editing/gallery.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/editing/availability.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/editing/formHandler.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/editing/main.js')}}"></script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+/* Root variables for colors, shadows, and theme */
+:root {
+	--lilac: #c8a2c8;
+	--lilac-light: #e6d7e6;
+	--pink: #f4acb6;
+	--pink-light: #f9d6da;
+	--white: #ffffff;
+	--off-white: #fcfaf9;
+	--primary-color: #db7093;
+	--text-dark: #4a4a4a;
+	--shadow: 0 4px 20px rgba(200, 162, 200, 0.15);
+}
+
+/* Base body styles */
+body {
+	background-color: var(--off-white);
+	font-family: "Georgia", "Times New Roman", Times, serif;
+	color: var(--text-dark);
+	line-height: 1.6;
+}
+
+/* Hero section with gradient background and curved bottom */
+.hero-section {
+	background: linear-gradient(
+		135deg,
+		var(--lilac-light) 0%,
+		var(--pink-light) 100%
+	);
+	padding: 4rem 0 2rem;
+	border-bottom-left-radius: 30% 20%;
+	border-bottom-right-radius: 30% 20%;
+	margin-bottom: 3rem;
+	position: relative;
+	overflow: hidden;
+}
+
+/* Transparent navbar with padding */
+.navbar-custom {
+	background: transparent !important;
+	padding: 1rem 0;
+}
+
+/* Spa header titles with underline effect */
+.spa-header {
+	font-family: "Georgia", "Times New Roman", Times, serif;
+	color: var(--primary-color);
+	font-weight: 600;
+	padding-bottom: 10px;
+	border-bottom: 2px solid var(--lilac);
+	margin-bottom: 25px;
+	position: relative;
+	display: inline-block;
+}
+.spa-header::after {
+	content: "";
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	width: 40px;
+	height: 2px;
+	background-color: var(--pink);
+}
+
+/* Buttons styling with hover effects */
+.spa-btn,
+.btn-primary {
+	background: var(--lilac-light);
+	color: #6b4688;
+	font-weight: bold;
+	border: 1px solid #6b4688;
+	border-radius: 30px;
+	padding: 10px 20px;
+	transition: all 0.3s ease;
+}
+.spa-btn:hover,
+.btn-primary:hover {
+	transform: translateY(-3px);
+	background: var(--lilac-light);
+	border: 1px solid #6b4688;
+	color: #6b4688;
+	box-shadow: var(--shadow);
+}
+
+/* Profile section container with shadow and padding */
+.profile-section {
+	padding: 2rem;
+	background: var(--white);
+	border-radius: 16px;
+	box-shadow: var(--shadow);
+	margin-bottom: 2rem;
+}
+
+/* Profile image styling with border and shadow */
+.profile-img {
+	width: 160px;
+	height: 160px;
+	object-fit: cover;
+	border: 4px solid var(--lilac);
+	box-shadow: var(--shadow);
+}
+
+/* Light background card for spa info */
+.bg-spa-light {
+	background: linear-gradient(
+		to right,
+		var(--lilac-light),
+		var(--pink-light)
+	) !important;
+	border-radius: 16px;
+	border: 1px solid rgba(219, 112, 147, 0.2);
+	box-shadow: var(--shadow);
+	padding: 1rem;
+}
+
+/* Feature card styles with hover lift effect */
+.feature-card {
+	background: var(--white);
+	border-radius: 12px;
+	padding: 1.5rem;
+	height: 100%;
+	box-shadow: var(--shadow);
+	border-top: 4px solid var(--lilac);
+	transition: transform 0.3s ease;
+}
+.feature-card:hover {
+	transform: translateY(-5px);
+}
+.feature-icon {
+	font-size: 2rem;
+	color: var(--primary-color);
+	margin-bottom: 1rem;
+}
+
+/* Highlight feature cards for "Why Choose Us" section */
+.feature-highlight-card {
+	background: var(--white);
+	border-radius: 16px;
+	padding: 1.5rem;
+	height: 100%;
+	text-align: center;
+	box-shadow: var(--shadow);
+}
+
+/* Operating hours card with left border accent */
+.operating-hours-card {
+	background: var(--white);
+	border-radius: 12px;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+	border-left: 3px solid var(--lilac);
+}
+
+/* Instagram-style gallery images with hover zoom */
+.instagram-style {
+	aspect-ratio: 1;
+	object-fit: cover;
+	width: 100%;
+	border-radius: 8px;
+	border: 3px solid var(--lilac);
+	transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.instagram-style:hover {
+	transform: scale(1.05);
+	border-color: var(--pink);
+}
+
+/* Footer styling with gradient background */
+.footer {
+	background: linear-gradient(
+		135deg,
+		var(--lilac) 0%,
+		var(--primary-color) 100%
+	);
+	color: white;
+	padding: 3rem 0 1rem;
+	margin-top: 4rem;
+}
+
+/* Social media icons with hover effect */
+.social-icon {
+	color: white;
+	font-size: 1.5rem;
+	margin-right: 1rem;
+	transition: all 0.3s ease;
+}
+.social-icon:hover {
+	color: var(--lilac-light);
+	transform: translateY(-3px);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+	.profile-img {
+		width: 120px;
+		height: 120px;
+	}
+	.hero-section {
+		padding: 2rem 0 1rem;
+	}
+}

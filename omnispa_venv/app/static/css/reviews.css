@@ -1,0 +1,76 @@
+/* Root variable for spa theme color */
+:root {
+	--spa-pink: #db7093;
+}
+
+/* Spa section headers with theme color and font weight */
+.spa-header {
+	color: var(--spa-pink);
+	font-weight: 500;
+}
+
+/* Spa buttons with background, border, and text color */
+.spa-btn {
+	background-color: var(--spa-pink);
+	border-color: var(--spa-pink);
+	color: white;
+}
+
+/* Spa button hover effect */
+.spa-btn:hover {
+	background-color: #c95d7d;
+	border-color: #c95d7d;
+	color: white;
+}
+
+/* Review card styling with rounded corners, shadow, margin, and left border */
+.review-card {
+	border-radius: 10px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+	margin-bottom: 20px;
+	border-left: 4px solid var(--spa-pink);
+}
+
+/* Rating stars styling */
+.rating i {
+	color: var(--spa-pink);
+	margin-right: 3px;
+}
+
+/* Empty rating stars styling */
+.rating .empty {
+	color: #ddd;
+}
+
+/* Disabled spa button styling */
+.btn.spa-btn.disabled {
+	opacity: 0.7;
+	cursor: not-allowed;
+}
+
+/* Image preview item container positioning */
+.image-preview-item {
+	position: relative;
+	margin: 5px;
+}
+
+/* Remove image button styling */
+.btn-remove-image {
+	transform: translate(50%, -50%);
+	border-radius: 50%;
+	width: 24px;
+	height: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+}
+
+/* Review images with hover zoom effect */
+.review-images img {
+	transition: transform 0.2s ease;
+}
+
+.review-images img:hover {
+	transform: scale(1.1);
+}
