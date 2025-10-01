@@ -329,21 +329,6 @@ class Appointment(db.Model):
     # Relationships
     spa = db.relationship('Spa', backref='appointments')
     services = db.relationship('AppointmentService', backref='appointment', cascade='all, delete-orphan')
-    
-    def cancel_appointment(self):
-        """Cancel this appointment and delete related records"""
-        try:
-            # Delete associated services first (foreign key constraints)
-            AppointmentService.query.filter_by(appointment_id=self.id).delete()
-            
-            # Then delete the appointment itself
-            db.session.delete(self)
-            db.session.commit()
-            return True
-        except Exception as e:
-            db.session.rollback()
-            current_app.logger.error(f"Error canceling appointment {self.id}: {str(e)}")
-            return False
         
 class AppointmentService(db.Model):
     __tablename__ = 'appointment_services'
