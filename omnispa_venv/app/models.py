@@ -214,7 +214,7 @@ class User(db.Model, UserMixin):
     
     # Relationships
     favorites = db.relationship('Favorite', backref='user', cascade='all, delete-orphan')
-    reviews = db.relationship('Review', backref='user', cascade='all, delete-orphan')
+    # reviews = db.relationship('Review', backref='user', cascade='all, delete-orphan')
     
     def set_password(self, password):
         """Sets password"""
@@ -254,7 +254,8 @@ class Review(db.Model):
     __tablename__ = 'reviews'
     
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+    owner_id = db.Column(db.Integer, db.ForeignKey('owners.id'), nullable=True)
     spa_id = db.Column(db.Integer, db.ForeignKey('spas.id'), nullable=False)
     rating = db.Column(db.Integer, nullable=False)
     comment = db.Column(db.Text, nullable=False)
@@ -262,7 +263,9 @@ class Review(db.Model):
         db.DateTime(timezone=True), 
         default=lambda: datetime.now(UTC_PLUS_4)
     )
-    
+    # Relationships
+    user = db.relationship('User', backref='user_reviews', lazy=True)
+    owner = db.relationship('Owner', backref='owner_reviews', lazy=True)
     images = db.relationship('ReviewImage', backref='review', cascade='all, delete-orphan')
     # Check ratings
     __table_args__ = (
@@ -326,7 +329,22 @@ class Appointment(db.Model):
     # Relationships
     spa = db.relationship('Spa', backref='appointments')
     services = db.relationship('AppointmentService', backref='appointment', cascade='all, delete-orphan')
-
+    
+    def cancel_appointment(self):
+        """Cancel this appointment and delete related records"""
+        try:
+            # Delete associated services first (foreign key constraints)
+            AppointmentService.query.filter_by(appointment_id=self.id).delete()
+            
+            # Then delete the appointment itself
+            db.session.delete(self)
+            db.session.commit()
+            return True
+        except Exception as e:
+            db.session.rollback()
+            current_app.logger.error(f"Error canceling appointment {self.id}: {str(e)}")
+            return False
+        
 class AppointmentService(db.Model):
     __tablename__ = 'appointment_services'
     
